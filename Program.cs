@@ -23,13 +23,13 @@ namespace cli_parking_system
                     switch (commands[0].ToLower())
                     {
                         case "create_parking_lot":
-                            Console.WriteLine("==create command is running==");
+                            // Console.WriteLine("==create command is running==");
                             slots.Capacity = Int32.Parse(commands[1]);
                             Console.WriteLine(slots.Capacity);
                             Console.WriteLine($"Created a parking lot with {slots.Capacity} slots");
                             break;
                         case "park":
-                            Console.WriteLine("==park command is running==");
+                            // Console.WriteLine("==park command is running==");
                             Vehicle vehicle = new Vehicle();
                             vehicle.serialNumber = commands[1].ToUpper();
                             vehicle.colour = char.ToUpper(commands[2][0]) + commands[2].Substring(1);
@@ -59,23 +59,23 @@ namespace cli_parking_system
                                 if (isNullExist)
                                 {
                                     slots[slotIndex] = vehicle;
+                                    Console.WriteLine($"Allocated slot number: {slots.IndexOf(vehicle)+1}");
                                 } else {
                                     if (slotIndex >= slots.Capacity)
                                     {
                                         Console.WriteLine("Sorry, parking lot is full");
                                     } else {
                                         slots.Insert(slotIndex, vehicle);
+                                        Console.WriteLine($"Allocated slot number: {slots.IndexOf(vehicle)+1}");
                                     }
                                 }
-                                Console.WriteLine($"Allocated slot number: {slots.IndexOf(vehicle)+1}");
                             } else {
                                 Console.WriteLine("Sorry, parking lot is full");
                             }
-
-                            Console.WriteLine("==park command SUCCESS==");
+                            // Console.WriteLine("==park command SUCCESS==");
                             break;
                         case "leave":
-                            Console.WriteLine("==leave command is running==");
+                            // Console.WriteLine("==leave command is running==");
                             DateTime now = DateTime.Now;
                             var index = Int32.Parse(commands[1]) - 1;
 
@@ -90,7 +90,7 @@ namespace cli_parking_system
                             Console.WriteLine($"Slot number {commands[1]} is free");
                             break;
                         case "status":
-                            Console.WriteLine("==status command is running==");
+                            // Console.WriteLine("==status command is running==");
                             foreach (var item in slots.Select((data, index) => (data, index)))
                             {
                                 if (item.data == null)
@@ -100,10 +100,32 @@ namespace cli_parking_system
                                     Console.WriteLine((item.index+1) + "=>" + item.data.serialNumber + " " + item.data.colour + " " + item.data.type + " " + item.data.getEntryTime());
                                 }
                             }
-                            Console.WriteLine("==status command SUCCESS==");
+                            // Console.WriteLine("==status command SUCCESS==");
                             break;
-                        case "type":
+                        case "type_of_vehicles":
                             Console.WriteLine("==type command is running==");
+                            var count = 0;
+                            if (commands[1].ToLower() == "motor")
+                            {
+                                foreach (var item in slots)
+                                {
+                                    if (item.type.ToLower() == "motor")
+                                    {
+                                        count++;
+                                    }
+                                }
+                            } else if (commands[1].ToLower() == "mobil")
+                            {
+                                foreach (var item in slots)
+                                {
+                                    if (item.type.ToLower() == "mobil")
+                                    {
+                                        count++;
+                                    }
+                                }
+                            }
+                            Console.WriteLine(count);
+                            Console.WriteLine("==type command SUCCESS==");
                             break;
                         case "registration_numbers":
                             Console.WriteLine("==registration_numbers command is running==");
