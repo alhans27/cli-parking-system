@@ -42,13 +42,13 @@ Result: Slot number 4 is free
 ```
 $ status
 ```
-Result:
-1 =>  B-1234-XYZ	Mobil	Putih 18/04/2024 12:23:44
-2 =>	B-9999-XYZ	Motor	Putih 18/04/2024 12:23:46
-3 =>	D-0001-HIJ 	Mobil	Hitam 18/04/2024 12:23:48
-4 =>  NULL
-5 =>	B-2701-XXX 	Mobil	Biru 18/04/2024 12:23:50
-6 =>	B-3141-ZZZ 	Motor	Hitam 18/04/2024 12:23:52
+Result: \n
+> 1 =>  B-1234-XYZ	Mobil	Putih 18/04/2024 12:23:44
+> 2 =>	B-9999-XYZ	Motor	Putih 18/04/2024 12:23:46
+> 3 =>	D-0001-HIJ 	Mobil	Hitam 18/04/2024 12:23:48
+> 4 =>  NULL
+> 5 =>	B-2701-XXX 	Mobil	Biru 18/04/2024 12:23:50
+> 6 =>	B-3141-ZZZ 	Motor	Hitam 18/04/2024 12:23:52
 
 ```
 $ park B-333-SSS Putih Mobil
