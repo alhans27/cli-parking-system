@@ -128,7 +128,7 @@ namespace cli_parking_system
                             // Console.WriteLine("==type command SUCCESS==");
                             break;
                         case "registration_numbers_for_vehicles_with_ood_plate":
-                            Console.WriteLine("==registration_numbers command is running==");
+                            // Console.WriteLine("==registration_numbers command is running==");
                             foreach (var item in slots)
                             {
                                 if (item != null)
@@ -146,7 +146,7 @@ namespace cli_parking_system
                             Console.WriteLine();
                             break;
                         case "registration_numbers_for_vehicles_with_event_plate":
-                            Console.WriteLine("==registration_numbers command is running==");
+                            // Console.WriteLine("==registration_numbers command is running==");
                             foreach (var item in slots)
                             {
                                 if (item != null)
@@ -164,7 +164,7 @@ namespace cli_parking_system
                             Console.WriteLine();
                             break;
                         case "registration_numbers_for_vehicles_with_colour":
-                            Console.WriteLine("==registration_numbers command is running==");
+                            // Console.WriteLine("==registration_numbers command is running==");
                             foreach (var item in slots)
                             {
                                 if (item != null)
@@ -179,8 +179,43 @@ namespace cli_parking_system
                             }
                             Console.WriteLine();
                             break;
-                        case "slot_number":
-                            Console.WriteLine("==slot_number command is running==");
+                        case "slot_numbers_for_vehicles_with_colour":
+                            // Console.WriteLine("==slot_number command is running==");
+                            foreach (var item in slots.Select((data, index) => (data, index)))
+                            {
+                                if (item.data != null)
+                                {
+                                    if (item.data.colour.ToLower() == commands[1].ToLower())
+                                    {
+                                        Console.Write((item.index+1) + ",");
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                            Console.WriteLine();
+                            break;
+                        case "slot_number_for_registration_number":
+                            // Console.WriteLine("==slot_number command is running==");
+                            var result = 0;
+                            foreach (var item in slots.Select((data, index) => (data, index)))
+                            {
+                                if (item.data != null)
+                                {
+                                    if (item.data.serialNumber.ToLower() == commands[1].ToLower())
+                                    {
+                                        result = item.index + 1;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                            if (result != 0)
+                            {
+                                Console.WriteLine(result);
+                            } else {
+                                Console.WriteLine("Not found");
+                            }
                             break;
                         case "exit":
                             Console.WriteLine("==exit command is running==");
