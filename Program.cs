@@ -103,7 +103,7 @@ namespace cli_parking_system
                             // Console.WriteLine("==status command SUCCESS==");
                             break;
                         case "type_of_vehicles":
-                            Console.WriteLine("==type command is running==");
+                            // Console.WriteLine("==type command is running==");
                             var count = 0;
                             if (commands[1].ToLower() == "motor")
                             {
@@ -125,10 +125,59 @@ namespace cli_parking_system
                                 }
                             }
                             Console.WriteLine(count);
-                            Console.WriteLine("==type command SUCCESS==");
+                            // Console.WriteLine("==type command SUCCESS==");
                             break;
-                        case "registration_numbers":
+                        case "registration_numbers_for_vehicles_with_ood_plate":
                             Console.WriteLine("==registration_numbers command is running==");
+                            foreach (var item in slots)
+                            {
+                                if (item != null)
+                                {
+                                    var data = item.serialNumber.Split("-");
+                                    var number = Int32.Parse(data[1]);
+                                    if (number % 2 == 0)
+                                    {
+                                        Console.Write(item.serialNumber + ",");
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                            Console.WriteLine();
+                            break;
+                        case "registration_numbers_for_vehicles_with_event_plate":
+                            Console.WriteLine("==registration_numbers command is running==");
+                            foreach (var item in slots)
+                            {
+                                if (item != null)
+                                {
+                                    var data = item.serialNumber.Split("-");
+                                    var number = Int32.Parse(data[1]);
+                                    if (number % 2 != 0)
+                                    {
+                                        Console.Write(item.serialNumber + ",");
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                            Console.WriteLine();
+                            break;
+                        case "registration_numbers_for_vehicles_with_colour":
+                            Console.WriteLine("==registration_numbers command is running==");
+                            foreach (var item in slots)
+                            {
+                                if (item != null)
+                                {
+                                    if (item.colour.ToLower() == commands[1].ToLower())
+                                    {
+                                        Console.Write(item.serialNumber + ",");
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                            Console.WriteLine();
                             break;
                         case "slot_number":
                             Console.WriteLine("==slot_number command is running==");
